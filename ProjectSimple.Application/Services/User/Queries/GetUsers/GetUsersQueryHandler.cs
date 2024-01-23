@@ -19,8 +19,18 @@ public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, List<UserDTO>
 
     public async Task<List<UserDTO>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
     {
+        // Declare variable
+        IReadOnlyList<Domain.Models.User> users;
+
         // Query database
-        var users = await _userRepository.GetAllAsync();
+        if (request.isActive.HasValue)
+        {
+            users = await _userRepository.GetAllAsync(request.isActive ?? true);
+        }
+        else
+        {
+            users = await _userRepository.GetAllAsync();
+        }
 
         // Convert objects to dto objects
         var result = _mapper.Map<List<UserDTO>>(users);

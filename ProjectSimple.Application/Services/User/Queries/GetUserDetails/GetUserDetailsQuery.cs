@@ -2,4 +2,4 @@
 
 namespace ProjectSimple.Application.Services.User.Queries.GetUserDetails;
 
-public record GetUserDetailsQuery(int Id) : IRequest<UserDetailsDTO>;
+public record GetUserDetailsQuery(long Id) : IRequest<UserDetailsDTO>;

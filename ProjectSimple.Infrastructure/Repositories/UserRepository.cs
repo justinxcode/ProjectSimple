@@ -24,4 +24,12 @@ public class UserRepository : GenericRepository<User>, IUserRepository
             return await _dbContext.Users.AnyAsync(x => x.Username == username && x.Id != Id) == false;
         }
     }
+
+    public async Task<IReadOnlyList<User>> GetAllAsync(bool isActive)
+    {
+        return await _dbContext.Set<User>()
+            .Where(x => x.IsActive == isActive)
+            .AsNoTracking()
+            .ToListAsync();
+    }
 }
