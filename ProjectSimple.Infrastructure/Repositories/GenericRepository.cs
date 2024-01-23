@@ -35,7 +35,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return entity;
     }
 
-    public async Task<T> GetAsync(int Id)
+    public async Task<T> GetAsync(long Id)
     {
         return await _dbContext.Set<T>()
                 .AsNoTracking()

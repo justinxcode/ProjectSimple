@@ -15,8 +15,4 @@
     <ProjectReference Include="..\ProjectSimple.Application\ProjectSimple.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Configurations\" />
-  </ItemGroup>
-
 </Project>

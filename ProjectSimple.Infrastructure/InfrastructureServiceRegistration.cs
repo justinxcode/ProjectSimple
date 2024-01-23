@@ -22,6 +22,7 @@ public static class InfrastructureServiceRegistration
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
         // Add additional repositories here
+        services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
     }
