@@ -11,8 +11,17 @@ public class UserRepository : GenericRepository<User>, IUserRepository
     {
     }
 
-    public async Task<bool> IsUsernameUnique(string username)
+    public async Task<bool> IsUsernameUnique(string username, long? Id = null)
     {
-        return await _dbContext.Users.AnyAsync(x => x.Username == username) == false;
+        if (Id == null)
+        {
+            // Check for new user creation
+            return await _dbContext.Users.AnyAsync(x => x.Username == username) == false;
+        }
+        else
+        {
+            // Check for user update - exclude the current user from the check
+            return await _dbContext.Users.AnyAsync(x => x.Username == username && x.Id != Id) == false;
+        }
     }
 }

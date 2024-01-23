@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ProjectSimple.Application.Services.User.Commands.CreateUser;
+using ProjectSimple.Application.Services.User.Commands.UpdateUser;
 using ProjectSimple.Application.Services.User.Queries.GetUserDetails;
 using ProjectSimple.Application.Services.User.Queries.GetUsers;
 using ProjectSimple.Domain.Models;
@@ -13,5 +14,6 @@ public class UserProfile : Profile
         CreateMap<User, UserDTO>().ReverseMap();
         CreateMap<User, UserDetailsDTO>();
         CreateMap<CreateUserCommand, User>();
+        CreateMap<UpdateUserCommand, User>();
     }
 }

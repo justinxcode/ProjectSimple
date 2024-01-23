@@ -1,5 +1,5 @@
-﻿using ProjectSimple.Application.Exceptions;
-using ProjectSimple.Application.Interfaces;
+﻿using ProjectSimple.Application.Interfaces;
+using ProjectSimple.Application.Validations;
 
 namespace ProjectSimple.Application.Services.User.Commands.CreateUser;
 
@@ -14,9 +14,9 @@ public class CreateUserCommandValidator
 
     public async Task<ValidationResult> ValidateAsync(CreateUserCommand command)
     {
+        // Validation
         var result = new ValidationResult();
 
-        // Validation
         if (!await IsUsernameUnique(command))
         {
             result.Errors.Add("Username already exists");

@@ -16,9 +16,4 @@
     <ProjectReference Include="..\ProjectSimple.Domain\ProjectSimple.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\User\Commands\DeleteUser\" />
-    <Folder Include="Services\User\Commands\UpdateUser\" />
-  </ItemGroup>
-
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace ProjectSimple.Application.Exceptions;
+﻿namespace ProjectSimple.Application.Validations;
 
 public class ValidationResult
 {

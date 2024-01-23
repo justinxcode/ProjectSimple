@@ -1,4 +1,6 @@
-﻿namespace ProjectSimple.Application.Exceptions;
+﻿using ProjectSimple.Application.Validations;
+
+namespace ProjectSimple.Application.Exceptions;
 
 public class BadRequestException : Exception
 {
