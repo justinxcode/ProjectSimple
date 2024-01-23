@@ -8,6 +8,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.Property(x => x.Id).HasColumnName("UserId");
+        builder.ToTable("Users", "psd")
+            .Property(x => x.Id)
+            .HasColumnName("UserId");
     }
 }
