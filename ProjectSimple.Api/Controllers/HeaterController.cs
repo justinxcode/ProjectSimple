@@ -8,7 +8,8 @@ public class HeaterController : ControllerBase
 {
     // GET: api/<HeaterController>
     [HttpGet]
-    public IActionResult Get()
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public ActionResult Get()
     {
         var random = new Random();
 
@@ -19,6 +20,8 @@ public class HeaterController : ControllerBase
             "Gas"
         };
 
-        return Ok(heaters[random.Next(heaters.Count)]);
+        var result = heaters[random.Next(heaters.Count)];
+
+        return Ok(result);
     }
 }
