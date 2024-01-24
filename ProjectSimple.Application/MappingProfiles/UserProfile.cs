@@ -3,7 +3,7 @@ using ProjectSimple.Application.Services.User.Commands.CreateUser;
 using ProjectSimple.Application.Services.User.Commands.UpdateUser;
 using ProjectSimple.Application.Services.User.Queries.GetUserDetails;
 using ProjectSimple.Application.Services.User.Queries.GetUsers;
-using ProjectSimple.Domain.Models;
+using ProjectSimple.Domain;
 
 namespace ProjectSimple.Application.MappingProfiles;
 

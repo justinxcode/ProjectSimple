@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectSimple.Application.Interfaces;
-using ProjectSimple.Domain.Models;
+using ProjectSimple.Domain;
 using ProjectSimple.Infrastructure.DatabaseContext;
 
 namespace ProjectSimple.Infrastructure.Repositories;

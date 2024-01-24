@@ -1,3 +1,4 @@
+using ProjectSimple.Api.Middleware;
 using ProjectSimple.Application;
 using ProjectSimple.Infrastructure;
 
@@ -13,6 +14,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+// Custom middleware
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

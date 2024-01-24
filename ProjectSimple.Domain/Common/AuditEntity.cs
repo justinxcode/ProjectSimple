@@ -1,4 +1,4 @@
-﻿namespace ProjectSimple.Domain.Models.Common;
+﻿namespace ProjectSimple.Domain.Common;
 
 public abstract class AuditEntity : BaseEntity
 {

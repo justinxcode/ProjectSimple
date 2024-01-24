@@ -27,6 +27,14 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Unit>
 
     public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
+        // Retrieve domain entity object
+        var userToUpdate = await _userRepository.GetAsync(request.Id);
+
+        // Verify record exists
+        if (userToUpdate == null)
+        {
+            throw new NotFoundException(nameof(User), request.Id);
+        }
 
         // Validate incoming data
         var validator = new UpdateUserCommandValidator(_userRepository);
@@ -35,15 +43,6 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Unit>
         if (!validationResult.IsValid)
         {
             throw new BadRequestException("Invalid User", validationResult);
-        }
-
-        // Retrieve domain entity object
-        var userToUpdate = await _userRepository.GetAsync(request.Id);
-
-        // Verify record exists
-        if (userToUpdate == null)
-        {
-            throw new NotFoundException(nameof(User), request.Id);
         }
 
         // Update record with existing values

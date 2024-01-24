@@ -20,7 +20,7 @@ public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, List<UserDTO>
     public async Task<List<UserDTO>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
     {
         // Declare variable
-        IReadOnlyList<Domain.Models.User> users;
+        IReadOnlyList<Domain.User> users;
 
         // Query database
         if (request.isActive.HasValue)

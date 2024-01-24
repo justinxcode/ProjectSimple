@@ -30,7 +30,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, long>
         }
 
         // Convert to domain entity object
-        var userToCreate = _mapper.Map<Domain.Models.User>(request);
+        var userToCreate = _mapper.Map<Domain.User>(request);
 
         // Add to database
         await _userRepository.CreateAsync(userToCreate);

@@ -23,6 +23,7 @@ namespace ProjectSimple.Api.Controllers
 
         // GET: api/<UsersController>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<UserDTO>>> Get([FromQuery] bool? isActive)
         {
             var users = await _mediator.Send(new GetUsersQuery(isActive));
@@ -32,6 +33,7 @@ namespace ProjectSimple.Api.Controllers
 
         // GET api/<UsersController>/5
         [HttpGet("{Id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<UserDetailsDTO>> Get(long Id)
         {
             var user = await _mediator.Send(new GetUserDetailsQuery(Id));
@@ -41,6 +43,9 @@ namespace ProjectSimple.Api.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Post(CreateUserCommand createUserCommand)
         {
             var response = await _mediator.Send(createUserCommand);
@@ -50,6 +55,10 @@ namespace ProjectSimple.Api.Controllers
 
         // PUT api/<UsersController>
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> Put(UpdateUserCommand updateUserCommand)
         {
             await _mediator.Send(updateUserCommand);
@@ -59,6 +68,9 @@ namespace ProjectSimple.Api.Controllers
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{Id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> Delete(long Id)
         {
             var command = new DeleteUserCommand() { Id = Id };
