@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjectSimple.Domain;
-using ProjectSimple.Domain.Common;
+using ProjectSimple.Domain.Models;
+using ProjectSimple.Domain.Models.Common;
 
 namespace ProjectSimple.Infrastructure.DatabaseContext;
 

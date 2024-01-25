@@ -1,6 +1,6 @@
-﻿using ProjectSimple.Domain.Common;
+﻿using ProjectSimple.Domain.Models.Common;
 
-namespace ProjectSimple.Domain;
+namespace ProjectSimple.Domain.Models;
 
 public class User : AuditEntity
 {

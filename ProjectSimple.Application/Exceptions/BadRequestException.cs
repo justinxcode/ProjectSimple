@@ -1,17 +1,22 @@
-﻿using ProjectSimple.Application.Validations;
+﻿using FluentValidation.Results;
+using ProjectSimple.Application.Validations;
 
 namespace ProjectSimple.Application.Exceptions;
 
 public class BadRequestException : Exception
 {
-    public BadRequestException(string message, ValidationResult validationResult) : base(message)
+    public BadRequestException(string message, CustomValidationResult customValidationResult) : base(message)
     {
-        ValidationErrors = validationResult.Errors;
-        //ValidationErrors = validationResult.ToDictionary();
+        ValidationErrorsList = customValidationResult.ErrorsList;
     }
 
-    public List<string> ValidationErrors { get; set; }
+    public BadRequestException(string message, ValidationResult validationResult) : base(message)
+    {
+        ValidationErrors = validationResult.ToDictionary();
+    }
 
-    //public IDictionary<string, string[]> ValidationErrors { get; set; }
+    public List<string> ValidationErrorsList { get; set; }
+
+    public IDictionary<string, string[]> ValidationErrors { get; set; }
 
 }

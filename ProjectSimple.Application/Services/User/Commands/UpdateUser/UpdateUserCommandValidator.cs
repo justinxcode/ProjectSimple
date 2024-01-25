@@ -1,11 +1,5 @@
 ﻿using ProjectSimple.Application.Interfaces;
-using ProjectSimple.Application.Services.User.Commands.CreateUser;
 using ProjectSimple.Application.Validations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectSimple.Application.Services.User.Commands.UpdateUser;
 
@@ -18,14 +12,14 @@ public class UpdateUserCommandValidator
         _userRepository = userRepository;
     }
 
-    public async Task<ValidationResult> ValidateAsync(UpdateUserCommand command)
+    public async Task<CustomValidationResult> ValidateAsync(UpdateUserCommand command)
     {
         // Validation
-        var result = new ValidationResult();
+        var result = new CustomValidationResult();
 
         if (!await IsUsernameUnique(command))
         {
-            result.Errors.Add("Username already exists");
+            result.ErrorsList.Add("Username already exists");
         }
 
         return result;

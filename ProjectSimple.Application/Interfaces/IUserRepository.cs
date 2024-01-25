@@ -1,4 +1,4 @@
-﻿using ProjectSimple.Domain;
+﻿using ProjectSimple.Domain.Models;
 
 namespace ProjectSimple.Application.Interfaces;
 

@@ -22,15 +22,15 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, long>
     {
         // Validate incoming data
         var validator = new CreateUserCommandValidator(_userRepository);
-        var validationResult = await validator.ValidateAsync(request);
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
-        if (!validationResult.IsValid)
+        if (validationResult.Errors.Count != 0)
         {
             throw new BadRequestException("Invalid User", validationResult);
         }
 
         // Convert to domain entity object
-        var userToCreate = _mapper.Map<Domain.User>(request);
+        var userToCreate = _mapper.Map<Domain.Models.User>(request);
 
         // Add to database
         await _userRepository.CreateAsync(userToCreate);

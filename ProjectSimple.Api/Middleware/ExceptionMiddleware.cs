@@ -1,16 +1,20 @@
 ﻿using ProjectSimple.Api.Models;
 using ProjectSimple.Application.Exceptions;
+using ProjectSimple.Application.Interfaces;
 using System.Net;
+using System.Text.Json;
 
 namespace ProjectSimple.Api.Middleware;
 
 public class ExceptionMiddleware
 {
     private readonly RequestDelegate _requestDelegate;
+    private readonly ILogger<ExceptionMiddleware> _logger;
 
-    public ExceptionMiddleware(RequestDelegate requestDelegate)
+    public ExceptionMiddleware(RequestDelegate requestDelegate, ILogger<ExceptionMiddleware> logger)
     {
         _requestDelegate = requestDelegate;
+        _logger = logger;
     }
 
     public async Task InvokeAsync(HttpContext httpContext)
@@ -41,6 +45,7 @@ public class ExceptionMiddleware
                     Type = nameof(BadRequestException),
                     Title = badRequestException.Message,
                     Detail = badRequestException.InnerException?.Message,
+                    ErrorsList = badRequestException.ValidationErrorsList,
                     Errors = badRequestException.ValidationErrors
                 };
                 break;
@@ -66,6 +71,9 @@ public class ExceptionMiddleware
         }
 
         httpContext.Response.StatusCode = (int)statusCode;
+
+        _logger.LogError(JsonSerializer.Serialize(problem));
+
         await httpContext.Response.WriteAsJsonAsync(problem);
     }
 }

@@ -19,4 +19,9 @@ public class AppLogger<T> : IAppLogger<T>
     {
         _logger.LogWarning(message, args);
     }
+
+    public void LogError(string message, params object[] args)
+    {
+        _logger.LogError(message, args);
+    }
 }

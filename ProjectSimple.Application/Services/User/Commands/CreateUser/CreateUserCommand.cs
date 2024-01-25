@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using System.ComponentModel.DataAnnotations;
 
 namespace ProjectSimple.Application.Services.User.Commands.CreateUser;
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProjectSimple.Domain;
+using ProjectSimple.Domain.Models;
 
 namespace ProjectSimple.Infrastructure.Configurations;
 
