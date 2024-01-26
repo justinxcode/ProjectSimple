@@ -18,4 +18,8 @@
     <ProjectReference Include="..\ProjectSimple.Domain\ProjectSimple.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Validations\Shared\" />
+  </ItemGroup>
+
 </Project>

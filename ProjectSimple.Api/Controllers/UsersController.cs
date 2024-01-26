@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectSimple.Application.Services.User.Commands.CreateUser;
 using ProjectSimple.Application.Services.User.Commands.DeleteUser;
+using ProjectSimple.Application.Services.User.Commands.GetUsers;
 using ProjectSimple.Application.Services.User.Commands.UpdateUser;
 using ProjectSimple.Application.Services.User.Queries.GetUserDetails;
 using ProjectSimple.Application.Services.User.Queries.GetUsers;
@@ -21,16 +22,6 @@ namespace ProjectSimple.Api.Controllers
             _mediator = mediator;
         }
 
-        // GET: api/<UsersController>
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<UserDTO>>> Get([FromQuery] bool? isActive)
-        {
-            var users = await _mediator.Send(new GetUsersQuery(isActive));
-
-            return Ok(users);
-        }
-
         // GET api/<UsersController>/5
         [HttpGet("{Id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -40,6 +31,29 @@ namespace ProjectSimple.Api.Controllers
 
             return Ok(user);
         }
+
+        // GET: api/<UsersController>
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<UserDTO>>> Get()
+        {
+            var users = await _mediator.Send(new GetUsersQuery());
+
+            return Ok(users);
+        }
+
+        // POST api/<UsersController>
+        [HttpPost]
+        [Route("WebReturn")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<GetUsersCommandResponse>> Post(GetUsersCommand getUsersCommand)
+        {
+            var users = await _mediator.Send(getUsersCommand);
+
+            return Ok(users);
+        }
+
 
         // POST api/<UsersController>
         [HttpPost]

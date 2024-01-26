@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectSimple.Application.Interfaces;
+using ProjectSimple.Application.Models;
 using ProjectSimple.Domain.Models.Common;
 using ProjectSimple.Infrastructure.DatabaseContext;
+using System.Linq.Expressions;
+using static ProjectSimple.Application.Helpers.PaginationBuilder;
 
 namespace ProjectSimple.Infrastructure.Repositories;
 
@@ -39,7 +42,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         return await _dbContext.Set<T>()
                 .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == Id);
+                .FirstAsync(x => x.Id == Id);
     }
 
     public async Task<IReadOnlyList<T>> GetAllAsync()
