@@ -1,31 +1,25 @@
-﻿using ProjectSimple.Application.Interfaces;
-using ProjectSimple.Application.Validations;
+﻿using FluentValidation;
+using ProjectSimple.Application.Interfaces;
 
 namespace ProjectSimple.Application.Services.User.Commands.UpdateUser;
 
-public class UpdateUserCommandValidator
+public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
 {
     private readonly IUserRepository _userRepository;
 
     public UpdateUserCommandValidator(IUserRepository userRepository)
     {
         _userRepository = userRepository;
+
+        RuleFor(x => x.Username).NotNull()
+            .NotEmpty().WithMessage("{PropertyName} is required")
+            .MaximumLength(255).WithMessage("{PropertyName} must be {MaxLength} or less");
+
+        RuleFor(x => x)
+            .MustAsync(IsUsernameUnique).WithMessage("{PropertyName} already exists");
     }
 
-    public async Task<CustomValidationResult> ValidateAsync(UpdateUserCommand command)
-    {
-        // Validation
-        var result = new CustomValidationResult();
-
-        if (!await IsUsernameUnique(command))
-        {
-            result.ErrorsList.Add("Username already exists");
-        }
-
-        return result;
-    }
-
-    private Task<bool> IsUsernameUnique(UpdateUserCommand command)
+    private Task<bool> IsUsernameUnique(UpdateUserCommand command, CancellationToken cancellationToken)
     {
         return _userRepository.IsUsernameUnique(command.Username, command.Id);
     }

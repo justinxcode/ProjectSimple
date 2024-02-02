@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectSimple.Application.Interfaces;
-using ProjectSimple.Application.Models;
 using ProjectSimple.Domain.Models.Common;
 using ProjectSimple.Infrastructure.DatabaseContext;
-using System.Linq.Expressions;
-using static ProjectSimple.Application.Helpers.PaginationBuilder;
 
 namespace ProjectSimple.Infrastructure.Repositories;
 

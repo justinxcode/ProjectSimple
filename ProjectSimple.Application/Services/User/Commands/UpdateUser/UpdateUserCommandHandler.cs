@@ -2,13 +2,6 @@
 using MediatR;
 using ProjectSimple.Application.Exceptions;
 using ProjectSimple.Application.Interfaces;
-using ProjectSimple.Application.Services.User.Commands.CreateUser;
-using ProjectSimple.Application.Services.User.Commands.DeleteUser;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectSimple.Application.Services.User.Commands.UpdateUser;
 

@@ -1,5 +1,4 @@
-﻿using ProjectSimple.Application.Models;
-using ProjectSimple.Domain.Models.Common;
+﻿using ProjectSimple.Domain.Models.Common;
 
 namespace ProjectSimple.Application.Interfaces;
 
@@ -10,4 +9,5 @@ public interface IGenericRepository<T> where T : BaseEntity
     Task<T> DeleteAsync(T entity);
     Task<T> GetAsync(long Id);
     Task<IReadOnlyList<T>> GetAllAsync();
+    
 }

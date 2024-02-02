@@ -44,16 +44,15 @@ namespace ProjectSimple.Api.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
-        [Route("WebReturn")]
+        [Route("Telerik")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<GetUsersCommandResponse>> Post(GetUsersCommand getUsersCommand)
+        public async Task<ActionResult> ActionResultPost(GetUsersCommand getUsersCommand)
         {
             var users = await _mediator.Send(getUsersCommand);
 
             return Ok(users);
         }
-
 
         // POST api/<UsersController>
         [HttpPost]

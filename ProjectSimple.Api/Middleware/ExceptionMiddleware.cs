@@ -1,6 +1,5 @@
 ﻿using ProjectSimple.Api.Models;
 using ProjectSimple.Application.Exceptions;
-using ProjectSimple.Application.Interfaces;
 using System.Net;
 using System.Text.Json;
 
@@ -45,7 +44,6 @@ public class ExceptionMiddleware
                     Type = nameof(BadRequestException),
                     Title = badRequestException.Message,
                     Detail = badRequestException.InnerException?.Message,
-                    ErrorsList = badRequestException.ValidationErrorsList,
                     Errors = badRequestException.ValidationErrors
                 };
                 break;
